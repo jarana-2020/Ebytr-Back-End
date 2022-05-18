@@ -1,5 +1,5 @@
 export type indexable = {
-  id: number,
+  id: string,
 }
 
 export type Entity = indexable & {
