@@ -1,9 +1,9 @@
-import mongoose, { model as makeModel } from 'mongoose';
+import { model as makeModel, Schema } from 'mongoose';
 
 
 
 const makeTodosDAO = () => {
-  const schema = new mongoose.Schema({
+  const schema = new Schema({
     decription: {
       type:String,
       required: true,
