@@ -1,0 +1,23 @@
+{
+  "name": "ebytr-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jarana-2020/Ebytr-Back-End.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jarana-2020/Ebytr-Back-End/issues"
+  },
+  "homepage": "https://github.com/jarana-2020/Ebytr-Back-End#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0"
+  }
+}
