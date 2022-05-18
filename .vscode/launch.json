@@ -15,7 +15,7 @@
       "--exec",
       "ts-node"
     ],
-    "runtimeExecutable": "${workspaceFolder}/node_modules/bin/nodemon",
+    "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
     "skipFiles": [
       "<node_internals>/**"
     ],
