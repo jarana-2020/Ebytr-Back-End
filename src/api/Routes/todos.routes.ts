@@ -10,7 +10,8 @@ todosRoute.put('/:id', async (req, res) => {
 });
 
 todosRoute.delete('/:id', async (req, res) => {
-  res.send(req);
+  await todosController.delete(req.params);
+  res.status(200).send({ message: 'Removed with success'});
 });
 
 todosRoute.get('/', async (_req, res) => {
