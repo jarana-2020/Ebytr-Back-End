@@ -59,4 +59,32 @@ describe('Test Service todos.service', () => {
       expect(todoService.get({} as any)).to.eventually.to.be.deep.equal({});
     });
   });
+
+  describe('Test method edit', () => {
+    beforeEach(() => {
+      sinon.restore();
+    });
+  
+    it('method get should throw error ',() => {
+      sinon.stub(todosModel, 'edit').rejects();
+      expect(todoService.edit('1', {})).to.eventually.to.be.rejected;
+    });
+  
+    it('should throw if get returns empyt', () => {
+      sinon.stub(todosModel, 'get').resolves();
+      expect(todoService.edit('1', {})).to.eventually.to.be.rejected;
+    });
+
+    it('should throw if todosModel.edit throws', () => {
+      sinon.stub(todosModel, 'get').resolves({} as any);
+      sinon.stub(todosModel, 'edit').rejects();
+      expect(todoService.edit('1', {} as any)).to.eventually.to.rejected;
+    });
+
+    it('should return nothing if success', () => {
+      sinon.stub(todosModel, 'get').resolves({} as any);
+      sinon.stub(todosModel, 'edit').resolves({} as any);
+      expect(todoService.edit('1',{} as any)).to.eventually.to.be.undefined;
+    });
+  });
 });
