@@ -7,7 +7,8 @@
     "start": "node -r ts-node/register src",
     "lint": "eslint . --fix",
     "dev": "nodemon --ext ts --watch src --exec ts-node src",
-    "test": "mocha -r ts-node/register tests/**/*.test.ts --exit -t 60000"
+    "test": "mocha -r ts-node/register tests/**/*.test.ts --exit -t 60000",
+    "test:coverage": "nyc npm test"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "joi": "^17.6.0",
     "mocha": "^10.0.0",
     "mongoose": "^6.3.3",
+    "nyc": "^15.1.0",
     "sinon": "^14.0.0"
   }
 }
