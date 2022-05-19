@@ -102,4 +102,29 @@ describe('Test Controller todos.controller', () => {
       expect(todosController.edit('1', {} as any)).to.eventually.to.deep.equal({});
     });
   });
+
+  describe('Test method delete', () => {
+    
+    beforeEach(() => {
+      sinon.restore();
+    });
+    
+    it('todosValidator paramId should return throw', () => {
+      sinon.stub(todosValidator, 'paramsId').rejects();
+      expect(todosController.delete('1')).to.eventually.be.rejected;
+    });
+
+    it('todoService.delete should return throw', () => {
+      sinon.stub(todosValidator, 'paramsId').resolves({} as any);
+      sinon.stub(todoService, 'delete').rejects();
+      expect(todosController.delete('1')).to.eventually.be.rejected;
+    });
+
+  
+    it('should return a object', () => {
+      sinon.stub(todosValidator, 'paramsId').resolves({} as any);
+      sinon.stub(todoService, 'delete').resolves({} as any);
+      expect(todosController.delete('1')).to.eventually.to.deep.equal({});
+    });
+  });
 });
