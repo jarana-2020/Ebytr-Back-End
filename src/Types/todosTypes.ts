@@ -10,6 +10,10 @@ export type Entity = indexable & {
 type StatusTodo = 'pendente' | 'em andamento' | 'pronto';
 
 export type Todo = Entity & {
-  decription: string,
+  description: string,
   status: StatusTodo,
 }
+
+export type AddTodo = Omit<Todo, keyof Entity>
+
+export type EditTodo = Partial<Omit<Todo, keyof Entity>>
