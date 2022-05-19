@@ -4,7 +4,7 @@ import { model as makeModel, Schema } from 'mongoose';
 
 const makeTodosDAO = () => {
   const schema = new Schema({
-    decription: {
+    description: {
       type:String,
       required: true,
     },

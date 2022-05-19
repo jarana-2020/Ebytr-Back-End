@@ -12,6 +12,7 @@ export const todosModel = {
       ...data,
       createdAt: new Date(),
     });
+    
     return result.id;
   },
 
