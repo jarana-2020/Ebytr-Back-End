@@ -7,17 +7,56 @@ import { todoService } from '../../src/app/service/todos.service';
 use(chaiAsPromised);
 
 describe('Test Service todos.service', () => {
-  beforeEach(() => {
-    sinon.restore();
+  describe('Test method list', () => {
+    beforeEach(() => {
+      sinon.restore();
+    });
+  
+    it('should throw error ',() => {
+      sinon.stub(todosModel, 'list').rejects();
+      expect(todoService.list()).to.eventually.to.be.rejected;
+    });
+  
+    it('should return a array', () => {
+      sinon.stub(todosModel, 'list').resolves([]);
+      expect(todoService.list()).to.eventually.to.deep.equal([]);
+    });
   });
 
-  it('should throw error ',() => {
-    sinon.stub(todosModel, 'list').rejects();
-    expect(todoService.list()).to.eventually.to.be.rejected;
+  describe('Test method add', () => {
+    beforeEach(() => {
+      sinon.restore();
+    });
+  
+    it('should throw error ',() => {
+      sinon.stub(todosModel, 'add').rejects();
+      expect(todoService.add({} as any)).to.eventually.to.be.rejected;
+    });
+  
+    it('should return a object', () => {
+      sinon.stub(todosModel, 'add').resolves({} as any);
+      expect(todoService.add({} as any)).to.eventually.to.deep.equal({});
+    });
   });
 
-  it('should return a array', () => {
-    sinon.stub(todosModel, 'list').resolves([]);
-    expect(todoService.list()).to.eventually.to.deep.equal([]);
+  describe('Test method get', () => {
+    beforeEach(() => {
+      sinon.restore();
+    });
+  
+    it('should throw error ',() => {
+      sinon.stub(todosModel, 'get').rejects();
+      expect(todoService.get({} as any)).to.eventually.to.be.rejected;
+    });
+  
+    it('should return a object', () => {
+      sinon.stub(todosModel, 'get').resolves();
+      expect(todoService.get('1')).to.eventually.to.be.rejected;
+    });
+
+    it('should return empty', () => {
+      sinon.stub(todosModel, 'get').resolves({} as any);
+      expect(todoService.get({} as any)).to.eventually.to.be.deep.equal({});
+    });
   });
 });
