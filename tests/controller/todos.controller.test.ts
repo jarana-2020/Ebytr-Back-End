@@ -2,7 +2,7 @@ import {expect, use} from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import sinon from 'sinon';
 import { todosController } from '../../src/app/controller/todos.controller';
-import { todoService } from '../../src/app/service/todo.service';
+import { todoService } from '../../src/app/service/todos.service';
 
 use(chaiAsPromised);
 
