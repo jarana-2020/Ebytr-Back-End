@@ -23,5 +23,9 @@ export const todosModel = {
 
   async edit(id: Todo['id'], changes: EditTodo): Promise<void> {
     await todoDAO.findOneAndUpdate({_id: id },{...changes, updatedAt: new Date()});
+  },
+
+  async delete(id: Todo['id']):Promise<void> {
+    await todoDAO.findOneAndDelete({_id: id});
   }
 };

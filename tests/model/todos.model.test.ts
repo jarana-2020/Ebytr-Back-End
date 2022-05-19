@@ -59,4 +59,38 @@ describe('Test Model todos.model', () => {
       expect(todosModel.get('1')).to.eventually.to.equal({});
     });
   });
+
+  describe('method edit', () => {
+
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('should throw', () => {
+      sinon.stub(todoDAO, 'findOneAndUpdate').rejects();
+      expect(todosModel.edit('1', {})).to.eventually.to.be.rejected;
+    });
+
+    it('should return a object', () => {
+      sinon.stub(todoDAO, 'findOneAndUpdate').resolves({});
+      expect(todosModel.edit('1', {})).to.eventually.to.equal({});
+    });
+  });
+
+  describe('method delete', () => {
+
+    afterEach(() => {
+      sinon.restore();
+    });
+
+    it('should throw', () => {
+      sinon.stub(todoDAO, 'findOneAndDelete').rejects();
+      expect(todosModel.delete('1')).to.eventually.to.be.rejected;
+    });
+
+    it('should return a object', () => {
+      sinon.stub(todoDAO, 'findOneAndDelete').resolves({});
+      expect(todosModel.delete('1')).to.eventually.to.equal({});
+    });
+  });
 });

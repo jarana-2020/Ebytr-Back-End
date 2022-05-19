@@ -23,5 +23,11 @@ export const todoService = {
     const exists = await todosModel.get(id);
     if(!exists) throwNotFoundError('todo not found');
     await todosModel.edit(id, changes);
+  },
+
+  async delete(id: Todo['id']): Promise<void> {
+    const exists = await todosModel.get(id);
+    if(!exists) throwNotFoundError('todo not found');
+    await todosModel.delete(id);
   }
 };
