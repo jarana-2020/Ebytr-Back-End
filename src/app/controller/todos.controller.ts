@@ -23,5 +23,10 @@ export const todosController = {
     await todoService.edit(id, changes);
     const result = await todoService.get(id);
     return result;
+  },
+
+  async delete(params: unknown):Promise<void> {
+    const { id } = await todosValidator.paramsId(params);
+    await todoService.delete(id);
   }
 };
