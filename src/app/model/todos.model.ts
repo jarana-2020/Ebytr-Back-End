@@ -1,5 +1,5 @@
 import { todoDAO } from '../../db';
-import { AddTodo, Todo } from '../../Types/todosTypes';
+import { AddTodo, EditTodo, Todo } from '../../Types/todosTypes';
 
 export const todosModel = {
   async list(): Promise<Todo[]> {
@@ -17,7 +17,11 @@ export const todosModel = {
   },
 
   async get(id: Todo['id']):Promise<Todo> {
-    const result = await todoDAO.findOne({id});
+    const result = await todoDAO.findOne({ _id: id });
     return result as Todo;
+  },
+
+  async edit(id: Todo['id'], changes: EditTodo): Promise<void> {
+    await todoDAO.findOneAndUpdate({_id: id },{...changes, updatedAt: new Date()});
   }
 };

@@ -5,7 +5,8 @@ import { todosController } from '../../app/controller/todos.controller';
 const todosRoute = Router();
 
 todosRoute.put('/:id', async (req, res) => {
-  res.send(req);
+  const result = await todosController.edit(req.params, req.body);
+  res.status(200).send(result);
 });
 
 todosRoute.delete('/:id', async (req, res) => {

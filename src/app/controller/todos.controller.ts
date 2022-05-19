@@ -13,5 +13,15 @@ export const todosController = {
     const id = await todoService.add(data);
     const result = await todoService.get(id);
     return result;
+  },
+
+  async edit(params: unknown, body: unknown):Promise<Todo> {
+    const [{ id }, changes] = await Promise.all([
+      todosValidator.paramsId(params),
+      todosValidator.bodyEdit(body)
+    ]);
+    await todoService.edit(id, changes);
+    const result = await todoService.get(id);
+    return result;
   }
 };
