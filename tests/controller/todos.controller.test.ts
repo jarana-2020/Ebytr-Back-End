@@ -8,9 +8,10 @@ import { Todo } from '../../src/Types/todosTypes';
 
 use(chaiAsPromised);
 
-describe('Test Model todos.model', () => {
+describe('Test Controller todos.controller', () => {
 
   describe('Test method list', () => {
+
     beforeEach(() => {
       sinon.restore();
     });
@@ -27,6 +28,7 @@ describe('Test Model todos.model', () => {
   });
 
   describe('Test method add', () => {
+
     beforeEach(() => {
       sinon.restore();
     });
@@ -54,7 +56,50 @@ describe('Test Model todos.model', () => {
       sinon.stub(todosValidator, 'bodyAdd').resolves({} as any);
       sinon.stub(todoService, 'add').resolves('1');
       sinon.stub(todoService, 'get').resolves({} as Todo);
-      expect(todosController.list()).to.eventually.to.deep.equal([]);
+      expect(todosController.list()).to.eventually.to.deep.equal({});
+    });
+  });
+
+  describe('Test method edit', () => {
+    
+    beforeEach(() => {
+      sinon.restore();
+    });
+    
+    it('todosValidator paramId should return throw', () => {
+      sinon.stub(todosValidator, 'paramsId').rejects();
+      sinon.stub(todosValidator, 'bodyEdit').resolves({} as any);
+      expect(todosController.edit('1', {} as any)).to.eventually.be.rejected;
+    });
+
+    it('todosValidator bodyEdit should return throw', () => {
+      sinon.stub(todosValidator, 'paramsId').resolves({} as any);
+      sinon.stub(todosValidator, 'bodyEdit').rejects();
+      expect(todosController.edit('1', {} as any)).to.eventually.be.rejected;
+    });
+
+    it('todoService.edit should return throw', () => {
+      sinon.stub(todosValidator, 'paramsId').resolves({} as any);
+      sinon.stub(todosValidator, 'bodyEdit').resolves({} as any);
+      sinon.stub(todoService, 'edit').rejects();
+      expect(todosController.edit('1', {} as any)).to.eventually.be.rejected;
+    });
+
+    it('todoService.get should return throw', () => {
+      sinon.stub(todosValidator, 'paramsId').resolves({} as any);
+      sinon.stub(todosValidator, 'bodyEdit').resolves({} as any);
+      sinon.stub(todoService, 'edit').resolves();
+      sinon.stub(todoService, 'get').rejects();
+      expect(todosController.edit('1', {} as any)).to.eventually.be.rejected;
+    });
+
+  
+    it('should return a object', () => {
+      sinon.stub(todosValidator, 'paramsId').resolves({} as any);
+      sinon.stub(todosValidator, 'bodyEdit').resolves({} as any);
+      sinon.stub(todoService, 'edit').resolves();
+      sinon.stub(todoService, 'get').resolves({} as any);
+      expect(todosController.edit('1', {} as any)).to.eventually.to.deep.equal({});
     });
   });
 });
