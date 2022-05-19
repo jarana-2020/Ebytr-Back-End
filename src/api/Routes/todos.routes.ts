@@ -14,11 +14,12 @@ todosRoute.delete('/:id', async (req, res) => {
 
 todosRoute.get('/', async (_req, res) => {
   const result = await todosController.list();
-  res.json(result);
+  res.status(200).json(result);
 });
 
 todosRoute.post('/', async (req, res) => {
-  res.send(req);
+  const result = await todosController.add(req.body);
+  res.status(201).json(result);
 });
 
 export default todosRoute;
