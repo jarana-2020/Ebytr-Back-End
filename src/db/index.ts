@@ -1,4 +1,4 @@
-import mongoose, { connect } from 'mongoose';
+import { connect } from 'mongoose';
 import utils from '../utils';
 import makeTodosDAO from './todos.dao';
 
