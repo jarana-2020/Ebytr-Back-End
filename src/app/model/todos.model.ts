@@ -1,6 +1,11 @@
 import { todoDAO } from '../../db';
 import { AddTodo, EditTodo, Todo } from '../../Types/todosTypes';
 
+// Créditos para o método de contrução desta api para o professor Leandro da Trybe,
+// decidi implementar de acordo com o conteudo que o mesmo abordou em sua aula para fins
+// de aprendizagem de métodos e praticas distintas das quais eu estava acostumado.
+
+
 export const todosModel = {
   async list(): Promise<Todo[]> {
     const result = await todoDAO.find();

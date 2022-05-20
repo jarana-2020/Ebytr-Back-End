@@ -15,8 +15,8 @@ export const todosValidator = {
   },
   async bodyEdit(value: unknown):Promise<AddTodo> {
     const schema = Joi.object<AddTodo>({
-      description: Joi.string().min(4).required(),
-      status: Joi.string()
+      description: Joi.string().min(4),
+      status: Joi.string().valid('pendente','em andamento','pronto')
     });
 
     const result = await runSchema(schema, value);

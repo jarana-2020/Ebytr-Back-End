@@ -2,6 +2,11 @@ import { Todo } from '../../Types/todosTypes';
 import { todoService } from '../service/todos.service';
 import { todosValidator } from './validators/todos.validator';
 
+// Créditos para o método de contrução desta api para o professor Leandro da Trybe,
+// decidi implementar de acordo com o conteudo que o mesmo abordou em sua aula para fins
+// de aprendizagem de métodos e praticas distintas das quais eu estava acostumado.
+
+
 export const todosController = {
   async list(): Promise<Todo[]> {
     const result = await todoService.list();
